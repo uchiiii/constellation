@@ -1,8 +1,11 @@
 use super::{DeployOutputEvent, Pid, ToHex};
-use aes::{block_cipher_trait::BlockCipher, Aes128};
+use aes::cipher::{BlockCipher, NewBlockCipher};
+use aes::Aes128;
 use rand::{self, Rng, SeedableRng};
 use std::{
-	borrow, fmt, fs, io::{self, Write}, os::{self, unix::io::IntoRawFd}
+	borrow, fmt, fs,
+	io::{self, Write},
+	os::{self, unix::io::IntoRawFd},
 };
 
 const STDOUT: os::unix::io::RawFd = 1;
